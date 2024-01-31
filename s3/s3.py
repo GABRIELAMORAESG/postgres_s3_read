@@ -25,7 +25,7 @@ def main():
     try:
         # Read configurations from dwh.cfg
         config = configparser.ConfigParser()
-        config.read('dwh.cfg')
+        config.read('s3/dwh.cfg')
         aws_config = config['AWS']
         bucket_name = aws_config['bucket_name']
         file_name = aws_config['file_name']
@@ -36,7 +36,7 @@ def main():
 
         if df is not None:
             # Write the DataFrame to a new CSV file
-            with open('account_creation_event.csv', 'w', newline='') as f:
+            with open('s3/account_creation_event.csv', 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(df.columns)  # Write header
                 rows_written = 0
